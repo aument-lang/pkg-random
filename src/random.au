@@ -1,0 +1,45 @@
+class State {
+    var seed;
+}
+
+export def new() {
+    state = new State;
+    init(state, 1);
+    return state;
+}
+
+export def seeded(seed) {
+    state = new State;
+    init(state, seed);
+    return state;
+}
+
+def (self: State) init(seed) {
+    @seed = seed;
+}
+
+export def (self: State) float() {
+    a = 16807;
+    m = 2147483647;
+    q = 127773;
+    r = 2836;
+    hi = @seed / q;
+    lo = @seed % q;
+    @seed = (a * lo) - (r * hi);
+    if @seed <= 0 {
+        @seed = @seed + m;
+    }
+    return std::float(@seed) / m;
+}
+
+export def (self: State) float_between(from, to) {
+    return float(self) * (to - from) + from;
+}
+
+export def (self: State) int_between(from, to) {
+    return int(float_between(self, from, to));
+}
+
+export def (self: State) choice(list) {
+    return list[int_between(self, 0, len(list) - 1)];
+}

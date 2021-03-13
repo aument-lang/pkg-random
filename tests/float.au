@@ -1,0 +1,4 @@
+import "../src/random.au" as random;
+
+state = random::new();
+print random::float(state), '\n';

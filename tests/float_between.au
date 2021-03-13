@@ -1,0 +1,6 @@
+import "../src/random.au" as random;
+
+state = random::new();
+print random::float_between(state, 1, 100), '\n';
+print random::float_between(state, 1, 100), '\n';
+print random::float_between(state, 1, 100), '\n';

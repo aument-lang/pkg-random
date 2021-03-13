@@ -1,0 +1,7 @@
+import "../src/random.au" as random;
+
+state = random::new();
+primes = [1,2,3,5,7,11,13];
+print random::choice(state, primes), '\n';
+print random::choice(state, primes), '\n';
+print random::choice(state, primes), '\n';
